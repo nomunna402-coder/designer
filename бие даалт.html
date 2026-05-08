@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nomundari Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+      background:#efe8dc;
+    }
+
+    section{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:80px;
+      position:relative;
+      overflow:hidden;
+    }
+
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      padding:25px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,0.1);
+    }
+
+    nav h2{
+      color:#0b8bb4;
+      font-size:30px;
+      font-weight:800;
+    }
+
+    nav ul{
+      display:flex;
+      gap:40px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#0b8bb4;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      transform:translateY(-5px);
+      display:inline-block;
+    }
+
+    /* HERO */
+
+    .hero{
+      background:#0b8bb4;
+      color:white;
+      flex-direction:column;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:140px;
+      line-height:0.9;
+      font-weight:800;
+      transition:0.4s;
+      cursor:pointer;
+    }
+
+    .hero h1:hover{
+      transform:scale(1.05) rotate(-2deg);
+    }
+
+    .hero p{
+      margin-top:20px;
+      font-size:25px;
+      letter-spacing:5px;
+    }
+
+    .scroll{
+      position:absolute;
+      bottom:40px;
+      animation:bounce 1.5s infinite;
+      font-size:20px;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(15px);
+      }
+    }
+
+    /* CARDS */
+
+    .container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:30px;
+      width:100%;
+      max-width:1300px;
+    }
+
+    .card{
+      background:#0b8bb4;
+      color:white;
+      padding:40px;
+      border-radius:30px;
+      min-height:350px;
+      position:relative;
+      overflow:hidden;
+      transition:0.5s;
+      cursor:pointer;
+    }
+
+    .card:hover{
+      transform:translateY(-20px) rotate(2deg) scale(1.02);
+      box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .circle{
+      width:250px;
+      height:250px;
+      border:2px solid rgba(255,255,255,0.2);
+      border-radius:50%;
+      position:absolute;
+      right:-70px;
+      bottom:-70px;
+      transition:0.5s;
+    }
+
+    .card:hover .circle{
+      transform:scale(1.2);
+    }
+
+    .card h2{
+      font-size:55px;
+      line-height:0.9;
+      margin-bottom:25px;
+    }
+
+    .card p{
+      line-height:2;
+      font-size:16px;
+    }
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      margin-top:30px;
+    }
+
+    .skill{
+      background:white;
+      color:#0b8bb4;
+      padding:12px 18px;
+      border-radius:30px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .skill:hover{
+      transform:scale(1.1);
+    }
+
+
+    .gallery{
+      background:#0b8bb4;
+      color:white;
+      flex-direction:column;
+    }
+
+    .gallery h1{
+      font-size:90px;
+      margin-bottom:50px;
+    }
+
+    .works{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+      width:100%;
+      max-width:1300px;
+    }
+
+    .work{
+      height:400px;
+      overflow:hidden;
+      border-radius:25px;
+      position:relative;
+      cursor:pointer;
+    }
+
+    .work img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.6s;
+    }
+
+    .work:hover img{
+      transform:scale(1.15);
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      transition:0.5s;
+    }
+
+    .work:hover .overlay{
+      opacity:1;
+    }
+
+    .overlay h3{
+      font-size:35px;
+    }
+
+
+    .contact{
+      background:#efe8dc;
+    }
+
+    .contact-box{
+      background:#0b8bb4;
+      color:white;
+      width:100%;
+      max-width:900px;
+      padding:80px;
+      border-radius:40px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-box h1{
+      font-size:80px;
+      margin-bottom:30px;
+    }
+
+    .contact-box p{
+      margin:20px 0;
+      font-size:22px;
+    }
+
+    .btn{
+      margin-top:40px;
+      display:inline-block;
+      background:white;
+      color:#0b8bb4;
+      padding:18px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.4s;
+    }
+
+    .btn:hover{
+      transform:scale(1.1);
+    }
+
+
+    .cursor{
+      width:30px;
+      height:30px;
+      border:2px solid #0b8bb4;
+      border-radius:50%;
+      position:fixed;
+      pointer-events:none;
+      transform:translate(-50%,-50%);
+      transition:0.1s;
+      z-index:9999;
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:80px;
+      }
+
+      .gallery h1{
+        font-size:60px;
+      }
+
+      .contact-box h1{
+        font-size:50px;
+      }
+
+      nav{
+        padding:20px;
+      }
+
+      nav ul{
+        gap:20px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor"></div>
+
+
+  <nav>
+    <h2>NOMUNDARI</h2>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <section class="hero">
+
+    <h1 id="heroText">
+      PORT <br>
+      FOLIO
+    </h1>
+
+    <p>
+      GRAPHIC DESIGNER
+    </p>
+
+    <div class="scroll">
+      ↓ Scroll Down ↓
+    </div>
+
+  </section>
+
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="card">
+        <div class="circle"></div>
+
+        <h2>ABOUT ME</h2>
+
+        <p>
+          Намсрай Номундарь <br><br>
+
+          Graphic Designer & Content Creator.
+          Social media post, reel, branding,
+          2D/3D design болон creative visual бүтээдэг.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="circle"></div>
+
+        <h2>WHAT I DO</h2>
+
+        <p>
+          Poster Design <br>
+          Social Media Design <br>
+          Video Editing <br>
+          2D Animation <br>
+          3D Modeling
+        </p>
+
+        <div class="skills">
+          <div class="skill">Photoshop</div>
+          <div class="skill">Illustrator</div>
+          <div class="skill">After Effects</div>
+          <div class="skill">Premiere</div>
+          <div class="skill">Figma</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="gallery" id="work">
+
+    <h1>MY WORK</h1>
+
+    <div class="works">
+
+      <div class="work">
+        <img src="work1.jpg">
+
+        <div class="overlay">
+          <h3><a href="cv.html">POSTER</a></h3>
+        </div>
+      </div>
+
+      <div class="work">
+        <img src="work2.jpg">
+
+        <div class="overlay">
+          <h3>BRANDING</h3>
+        </div>
+      </div>
+
+      <div class="work">
+        <img src="work3.jpg">
+
+        <div class="overlay">
+          <h3>3D DESIGN</h3>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="contact" id="contact">
+
+    <div class="contact-box">
+
+      <div class="circle"></div>
+
+      <h1>CONTACT</h1>
+
+      <p>📧 nomunna402@gmail.com</p>
+
+      <p>📱 80660216 / 88480216</p>
+
+      <p>📍 Ulaanbaatar, Mongolia</p>
+
+      <a href="#" class="btn">
+        LET'S WORK TOGETHER
+      </a>
+
+    </div>
+
+  </section>
+
+  <script>
+
+
+    const cursor = document.querySelector('.cursor');
+
+    document.addEventListener('mousemove', e => {
+
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+
+    });
+
+    // HERO PARALLAX
+
+    const heroText = document.getElementById('heroText');
+
+    document.addEventListener('mousemove', (e)=>{
+
+      let x = (window.innerWidth / 2 - e.pageX) / 30;
+      let y = (window.innerHeight / 2 - e.pageY) / 30;
+
+      heroText.style.transform =
+      `translate(${x}px, ${y}px)`;
+
+    });
+
+  </script>
+
+</body>
+</html>
